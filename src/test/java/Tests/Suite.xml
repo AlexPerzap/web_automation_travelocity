@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Travelocity test suite">
+    <!-- some parameter -->
+    <parameter name="browser" value="chrome"></parameter>
+
+    <test name="Travelocity Tests">
+        <classes>
+            <class name="Tests.SearchResultsTests"></class>
+
+        </classes>
+    </test>
+</suite>
