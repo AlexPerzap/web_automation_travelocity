@@ -48,7 +48,7 @@ public class DepartureFlightResultsPage extends BasePage{
             @FindBy( css = "ol[data-test-id='listings'] li:nth-child(3)")}) //perf
     private WebElement thirdResult;
 
-    @FindAll({@FindBy(css = "#basic-economy-tray-content-1 > div > div > div.basic-economy-footer.uitk-grid.all-grid-align-end > button > span > span:nth-child(1)"),
+    @FindAll({@FindBy(css = "#basic-economy-tray-content-1 > div > div > div.basic-economy-footer.uitk-grid.all-grid-align-end > button"),
             @FindBy(css = "div[data-test-id='details-and-fares-footer'] button[data-test-id='select-button']")})
     private WebElement selectFare;
     // #basic-economy-tray-content-1 > div > div > div.basic-economy-footer.uitk-grid.all-grid-align-end > button
@@ -76,7 +76,7 @@ public class DepartureFlightResultsPage extends BasePage{
     }
 
     public void selectSortByDuration(){
-        click(sortByDropdown);
+        click(sortByDropdown, 15);
         click(shortestDurationOption);
     }
 
@@ -87,7 +87,7 @@ public class DepartureFlightResultsPage extends BasePage{
 
     public void chooseFirstResult(){
         click(firstResult);
-        //click(selectFare);
+        click(selectFare, 15);
     }
 
 

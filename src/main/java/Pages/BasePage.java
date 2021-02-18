@@ -44,7 +44,7 @@ public abstract class BasePage {
 
     protected void click(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver,timeout);
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
 
