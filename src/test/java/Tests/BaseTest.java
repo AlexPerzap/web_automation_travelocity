@@ -49,15 +49,12 @@ public abstract class BaseTest {
         departure = departure;
         destination = destination;
 
-
     }
 
     protected void clearBrowserData(){
         driver.manage().deleteAllCookies();
         driver.get("chrome://settings/clearBrowserData");
         driver.findElement(By.xpath("//settings-ui")).sendKeys(Keys.ENTER);
-
-
     }
 
     protected Logger log() {

@@ -11,7 +11,7 @@
     <test name="Travelocity Tests">
         <classes>
             <class name="Tests.SearchResultsTests"></class>
-
+            <!-- <class name="Tests.TripDetailsTest"></class>-->
         </classes>
     </test>
 </suite>

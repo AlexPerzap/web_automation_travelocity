@@ -38,6 +38,22 @@ public class DepartureFlightResultsPage extends BasePage{
             @FindBy(css = "option[value=\"DURATION_INCREASING\"]")})
     private WebElement shortestDurationOption;
 
+    @FindAll({
+            @FindBy(xpath = "//li[1]//div[1]//div[2]//div[2]//div[1]//div[2]//button[1]"),
+            @FindBy( css = "ol[data-test-id='listings'] li:nth-child(1)")}) //2
+    private WebElement firstResult;
+
+    @FindAll({
+            @FindBy( xpath = "//li[3]//div[1]//div[2]//div[2]//div[1]//div[2]//button[1]"), //bn
+            @FindBy( css = "ol[data-test-id='listings'] li:nth-child(3)")}) //perf
+    private WebElement thirdResult;
+
+    @FindAll({@FindBy(css = "#basic-economy-tray-content-1 > div > div > div.basic-economy-footer.uitk-grid.all-grid-align-end > button > span > span:nth-child(1)"),
+            @FindBy(css = "div[data-test-id='details-and-fares-footer'] button[data-test-id='select-button']")})
+    private WebElement selectFare;
+    // #basic-economy-tray-content-1 > div > div > div.basic-economy-footer.uitk-grid.all-grid-align-end > button
+    ////li[1]//div[2]//div[1]//div[1]//div[1]//div[1]//button[1]
+
     public DepartureFlightResultsPage(WebDriver driver){
         super(driver);
     }
@@ -51,9 +67,7 @@ public class DepartureFlightResultsPage extends BasePage{
     }
 
     public boolean isDurationShownForEveryResult() {
-        //return isEveryWebElementOnThisListAvailable(duration);
         return allResultsList.size() == duration.size();
-
     }
 
     public boolean areFlightDetailsAndBaggageFeesAvailable(){
@@ -71,13 +85,10 @@ public class DepartureFlightResultsPage extends BasePage{
         return new HomeSearchPage(getDriver());
     }
 
-
-    /*private Select findDropDownElement(){
-        return new Select(getDriver()));
+    public void chooseFirstResult(){
+        click(firstResult);
+        //click(selectFare);
     }
 
-    public void sortResultsByShorter(){
-        click(sortByDropdown);
-    }*/
 
 }

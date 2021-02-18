@@ -2,17 +2,19 @@ package Tests;
 
 import Pages.DepartureFlightResultsPage;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class SearchResultsTests extends BaseTest{
-
-    private DepartureFlightResultsPage departureFlightResultsPage;
+    /*private DepartureFlightResultsPage departureFlightResultsPage;
+    @BeforeMethod
+    public DepartureFlightResultsPage selectDepartureAndReturnFlightFare(){
+        return departureFlightResultsPage = searchForARoundTripFlightAndSortDepartureResults();
+    }*/
 
     @Test
     public void ValidatePageContent(){
-        DepartureFlightResultsPage departureFlightResultsPage = searchForARoundTripFlightAndSortDepartureResults();
+        DepartureFlightResultsPage departureFlightResultsPage
+                = searchForARoundTripFlightAndSortDepartureResults();
         Assert.assertTrue(departureFlightResultsPage.isThereASortByDropdown(),"There is no a 'sort by' dropdown menu.");
         log().info("It has validated there is a 'sort by' dropdown menu.");
         Assert.assertTrue(departureFlightResultsPage.isSelectionPossibleForEveryResult(),"Selection option is not available for every result.");
