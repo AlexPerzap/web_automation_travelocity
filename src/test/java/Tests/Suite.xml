@@ -4,6 +4,9 @@
 <suite name="Travelocity test suite">
     <!-- some parameter -->
     <parameter name="browser" value="chrome"></parameter>
+    <parameter name="departure" value="LAS"></parameter>
+    <parameter name="destination" value="LAX"></parameter>
+
 
     <test name="Travelocity Tests">
         <classes>

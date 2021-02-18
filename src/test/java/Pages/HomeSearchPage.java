@@ -36,7 +36,7 @@ public class HomeSearchPage extends BasePage{
         super(driver);
     }
 
-    public DepartureFlightsResultsPage searchForARoundtripFlight(String leavingFrom, String goingTo){
+    public DepartureFlightResultsPage searchForARoundtripFlight(String leavingFrom, String goingTo){
         log().info("It click on Flights icon.");
         click(flightsSearchButton);
         log().info("It clicks on 'Leaving from' input and enters a departure airport.");
@@ -58,7 +58,7 @@ public class HomeSearchPage extends BasePage{
         log().info("It click on 'Search' button and goes to results page.");
         click(searchButton);
         //getDriver().switchTo().frame(DepartureFlightsResutsPage);
-        return new DepartureFlightsResultsPage(getDriver());
+        return new DepartureFlightResultsPage(getDriver());
     }
 
 

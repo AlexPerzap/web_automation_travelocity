@@ -1,6 +1,7 @@
 package Tests;
 
 import Pages.BasePage;
+import Pages.DepartureFlightResultsPage;
 import Pages.HomeSearchPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -17,10 +18,12 @@ public abstract class BaseTest {
     private HomeSearchPage homeSearchPage;
     private static WebDriver driver;
     private Logger log = LoggerFactory.getLogger(BasePage.class);
+    protected String departure;
+    protected String destination;
 
     @BeforeClass
-    @Parameters({"browser"})
-    protected void setupClass(String browser) {
+    @Parameters({"browser", "departure", "destination"})
+    protected void setupClass(String browser, String departure, String destination) {
         switch (browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -43,12 +46,18 @@ public abstract class BaseTest {
         driver.get("https://www.travelocity.com");
         driver.manage().window().maximize();
         homeSearchPage = new HomeSearchPage(driver);
+        departure = departure;
+        destination = destination;
+
+
     }
 
     protected void clearBrowserData(){
         driver.manage().deleteAllCookies();
         driver.get("chrome://settings/clearBrowserData");
         driver.findElement(By.xpath("//settings-ui")).sendKeys(Keys.ENTER);
+
+
     }
 
     protected Logger log() {
@@ -59,10 +68,17 @@ public abstract class BaseTest {
         return homeSearchPage;
     }
 
-   /*@AfterClass
+    public DepartureFlightResultsPage searchForARoundTripFlightAndSortDepartureResults() {
+        log().info("It searches for a round trip flight and sorts departure results starting by the shortest.");
+        DepartureFlightResultsPage departureFlightResultsPage = getHomeSearchPage().searchForARoundtripFlight("LAS", "LAX");
+        departureFlightResultsPage.selectSortByDuration();
+        return new DepartureFlightResultsPage(driver);
+    }
+
+   @AfterClass
     protected void teardown() {
         if (driver != null) {
             driver.quit();
         }
-    }*/
+    }
 }
