@@ -1,6 +1,7 @@
 package Tests;
 
 import Pages.DepartureFlightResultsPage;
+import Pages.ReturnFlightResultsPage;
 import org.testng.annotations.*;
 
 public class TripDetailsTest extends BaseTest{
@@ -9,7 +10,8 @@ public class TripDetailsTest extends BaseTest{
     public void ValidateTripDetails(){
         DepartureFlightResultsPage departureFlightResultsPage
                 = searchForARoundTripFlightAndSortDepartureResults();
-        departureFlightResultsPage.chooseFirstResult();
+        ReturnFlightResultsPage returnFlightResultsPage = departureFlightResultsPage.chooseFirstResult();
+        returnFlightResultsPage.chooseThirdResult();
 
     }
 

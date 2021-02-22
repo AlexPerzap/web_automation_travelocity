@@ -66,16 +66,16 @@ public abstract class BaseTest {
     }
 
     public DepartureFlightResultsPage searchForARoundTripFlightAndSortDepartureResults() {
-        log().info("It searches for a round trip flight and sorts departure results starting by the shortest.");
+        log().info("It searches for a round trip flight and sorts departure results starting by the shortest:");
         DepartureFlightResultsPage departureFlightResultsPage = getHomeSearchPage().searchForARoundtripFlight("LAS", "LAX");
         departureFlightResultsPage.selectSortByDuration();
         return new DepartureFlightResultsPage(driver);
     }
 
-   @AfterClass
+   /*@AfterClass
     protected void teardown() {
         if (driver != null) {
             driver.quit();
         }
-    }
+    }*/
 }

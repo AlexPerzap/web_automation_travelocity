@@ -34,32 +34,29 @@ public class DepartureFlightResultsPage extends BasePage{
             @FindBy(css = "li[data-test-id='offer-listing']")})
     private List<WebElement> flightDetailsAndBaggageFeesInfo;
 
+    // #sortDropdown > option:nth-child(3)
+    // option[value="duration:asc"]
     @FindAll({@FindBy(css = "option[value=\"duration:asc\"]"),
             @FindBy(css = "option[value=\"DURATION_INCREASING\"]")})
     private WebElement shortestDurationOption;
+    // option[value="DURATION_INCREASING"]
 
+//  button[data-offer-index="0"]
     @FindAll({
-            @FindBy(xpath = "//li[1]//div[1]//div[2]//div[2]//div[1]//div[2]//button[1]"),
-            @FindBy( css = "ol[data-test-id='listings'] li:nth-child(1)")}) //2
+            @FindBy(css = "#flightModuleList > li:nth-child(1) > div > div[data-test-id=\"listing-summary\"] > div.all-col-shrink > div > div.all-col-shrink > button"),
+            @FindBy(css = "#flightModuleList > li:nth-child(1) > div > div > div > button")})
     private WebElement firstResult;
 
-    @FindAll({
-            @FindBy( xpath = "//li[3]//div[1]//div[2]//div[2]//div[1]//div[2]//button[1]"), //bn
-            @FindBy( css = "ol[data-test-id='listings'] li:nth-child(3)")}) //perf
-    private WebElement thirdResult;
-
-    @FindAll({@FindBy(css = "#basic-economy-tray-content-1 > div > div > div.basic-economy-footer.uitk-grid.all-grid-align-end > button"),
-            @FindBy(css = "div[data-test-id='details-and-fares-footer'] button[data-test-id='select-button']")})
+    @FindAll({@FindBy(css = "#flightModuleList > li:nth-child(1) > div.basic-economy-tray > div > div > div > div > button"),
+            @FindBy(css = "button[data-test-id=\"select-button\"]")})
     private WebElement selectFare;
-    // #basic-economy-tray-content-1 > div > div > div.basic-economy-footer.uitk-grid.all-grid-align-end > button
-    ////li[1]//div[2]//div[1]//div[1]//div[1]//div[1]//button[1]
 
     public DepartureFlightResultsPage(WebDriver driver){
         super(driver);
     }
 
     public boolean isThereASortByDropdown(){
-        return isElementAvailable(sortByDropdown, 15);
+        return isElementAvailable(sortByDropdown, getCustomWait().NORMAL_WAIT_SECONDS);
     }
 
     public boolean isSelectionPossibleForEveryResult() {
@@ -76,8 +73,10 @@ public class DepartureFlightResultsPage extends BasePage{
     }
 
     public void selectSortByDuration(){
-        click(sortByDropdown, 15);
-        click(shortestDurationOption);
+        click(sortByDropdown, getCustomWait().NORMAL_WAIT_SECONDS);
+        log().info("It clicked on sort by dropdown menu.");
+        click(shortestDurationOption, getCustomWait().NORMAL_WAIT_SECONDS);
+        log().info("It sorted results by duration (shortest).");
     }
 
     public HomeSearchPage goToHome() {
@@ -85,10 +84,13 @@ public class DepartureFlightResultsPage extends BasePage{
         return new HomeSearchPage(getDriver());
     }
 
-    public void chooseFirstResult(){
-        click(firstResult);
-        click(selectFare, 15);
-    }
+    public ReturnFlightResultsPage chooseFirstResult(){
 
+        click(firstResult, getCustomWait().NORMAL_WAIT_SECONDS);
+        log().info("It chose the first option");
+        click(selectFare, getCustomWait().NORMAL_WAIT_SECONDS);
+        log().info("It selected the fare");
+        return new ReturnFlightResultsPage(getDriver());
+    }
 
 }

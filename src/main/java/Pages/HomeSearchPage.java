@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,7 +38,7 @@ public class HomeSearchPage extends BasePage{
     }
 
     public DepartureFlightResultsPage searchForARoundtripFlight(String leavingFrom, String goingTo){
-        log().info("It click on Flights icon.");
+        log().info("It clicks on Flights icon.");
         click(flightsSearchButton);
         log().info("It clicks on 'Leaving from' input and enters a departure airport.");
         sendKeys(leavingFromInput, leavingFrom);
@@ -55,9 +56,14 @@ public class HomeSearchPage extends BasePage{
         click(date2);
         log().info("It clicks on the 'Done' button.");
         click(doneButton);
-        log().info("It click on 'Search' button and goes to results page.");
+        log().info("It clicks on the 'Search' button and goes to results page.");
+
+
+
+
+        //WebElement button1 = getDriver().findElement(By.cssSelector("button[data-testid='submit-button']"));
         click(searchButton);
-        //getDriver().switchTo().frame(DepartureFlightsResutsPage);
+        //getDriver().switchTo().frame(DepartureFlightsResultsPage);
         return new DepartureFlightResultsPage(getDriver());
     }
 

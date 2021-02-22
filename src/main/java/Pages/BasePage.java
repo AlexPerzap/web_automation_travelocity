@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -42,7 +43,7 @@ public abstract class BasePage {
                 .back();
     }
 
-    protected void click(WebElement element, int timeout) {
+    protected void click(WebElement element, long timeout) {
         WebDriverWait wait = new WebDriverWait(driver,timeout);
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
@@ -50,26 +51,31 @@ public abstract class BasePage {
 
     protected void click(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver,15);
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
 
     protected void sendKeys(WebElement element, String sequence) {
         WebDriverWait wait = new WebDriverWait(driver,15);
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
         element.sendKeys(sequence);
     }
 
     protected boolean isElementAvailable(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver,10);
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
         return true;
     }
 
-    protected boolean isElementAvailable(WebElement element, int seconds ) {
+    protected boolean isElementAvailable(WebElement element, long seconds ) {
         WebDriverWait wait = new WebDriverWait(driver,seconds);
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
         return true;
+    }
+
+    public void scrollToElement(WebElement element) {
+        String script = "arguments[0].scrollIntoView();";
+        ((JavascriptExecutor)driver).executeScript(script, element);
     }
 
     protected void switchToParentContent(){
