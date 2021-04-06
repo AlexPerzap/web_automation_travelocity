@@ -13,5 +13,4 @@ public class ReviewYourTripPage extends BasePage{
     @FindAll({@FindBy(css = "header-logo"),
             @FindBy(css = "a.header-logo")})
     private WebElement goToHome;
-
 }

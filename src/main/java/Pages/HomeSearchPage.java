@@ -30,9 +30,6 @@ public class HomeSearchPage extends BasePage{
     @FindBy(how = How.CSS, using = "div:nth-of-type(2)>div>div:nth-of-type(3)>button")
     private WebElement doneButton;
 
-    //@FindAll({@FindBy(how = How.XPATH, using = "(//span[@class='uitk-button-toggle-content'])[2]"),
-            //@FindBy(how = How.XPATH, using = "(//a[@href='?pwaLob=wizard-flight-pwa'])") //})
-
     public HomeSearchPage(WebDriver driver){
         super(driver);
     }
@@ -57,16 +54,9 @@ public class HomeSearchPage extends BasePage{
         log().info("It clicks on the 'Done' button.");
         click(doneButton);
         log().info("It clicks on the 'Search' button and goes to results page.");
-
-
-
-
-        //WebElement button1 = getDriver().findElement(By.cssSelector("button[data-testid='submit-button']"));
         click(searchButton);
-        //getDriver().switchTo().frame(DepartureFlightsResultsPage);
         return new DepartureFlightResultsPage(getDriver());
     }
-
 
 }
 

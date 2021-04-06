@@ -12,7 +12,5 @@ public class TripDetailsTest extends BaseTest{
                 = searchForARoundTripFlightAndSortDepartureResults();
         ReturnFlightResultsPage returnFlightResultsPage = departureFlightResultsPage.chooseFirstResult();
         returnFlightResultsPage.chooseThirdResult();
-
     }
-
 }

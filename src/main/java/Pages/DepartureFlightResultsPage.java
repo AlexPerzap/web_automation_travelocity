@@ -85,7 +85,6 @@ public class DepartureFlightResultsPage extends BasePage{
     }
 
     public ReturnFlightResultsPage chooseFirstResult(){
-
         click(firstResult, getCustomWait().NORMAL_WAIT_SECONDS);
         log().info("It chose the first option");
         click(selectFare, getCustomWait().NORMAL_WAIT_SECONDS);
